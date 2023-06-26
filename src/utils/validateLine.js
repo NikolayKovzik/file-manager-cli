@@ -13,6 +13,27 @@ export const validateLine = (command, args) => {
 			}
 			break;
 		}
+		case 'rm':
+		case 'add':
+		case 'cat':
+		case 'cd':
+		case 'os':
+		case 'hash': {
+			if (args.length === 1) {
+				return;
+			}
+			break;
+		}
+		case 'rn':
+		case 'cp':
+		case 'mv':
+		case 'compress':
+		case 'decompress': {
+			if (args.length === 2) {
+				return;
+			}
+			break;
+		}
 	}
 
 	throw new SyntaxError(validationErrorMsg);

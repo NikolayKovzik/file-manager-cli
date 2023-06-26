@@ -20,4 +20,3 @@ export const compressionFlags = {
 	compress: 'co',
 	decompress: 'deco'
 };
-export const brotliExtension = '.br';

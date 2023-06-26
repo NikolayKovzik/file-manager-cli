@@ -1,4 +1,4 @@
-export { getUserNameFromArgv } from './getUserNameFromArgv.js';
+export { getUsernameFromArgv } from './getUsernameFromArgv.js';
 export { closeProcess } from './closeProcess.js';
 export { handleLine } from './handleLine.js';
 export { handleStdinOnData } from './handleStdinOnData.js';

@@ -1,5 +1,5 @@
 import { parse, resolve } from 'node:path';
-import { brotliExtension, compressionFlags } from '../../constants/index.js';
+import { compressionFlags } from '../../constants/index.js';
 
 const { compress, decompress } = compressionFlags;
 
@@ -10,7 +10,7 @@ export const parseArgs = (pathToFile, pathToDestination, flag) => {
 
 	switch (flag) {
 		case compress:
-			resolvedDestPath = resolve(pathToDestination, `${name}${ext}${brotliExtension}`);
+			resolvedDestPath = resolve(pathToDestination, `${name}${ext}.br`);
 			break;
 		case decompress:
 			resolvedDestPath = resolve(pathToDestination, name);

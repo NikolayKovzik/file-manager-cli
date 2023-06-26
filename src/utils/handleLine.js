@@ -1,9 +1,12 @@
 import { up, cd, ls } from '../handlers/navigation/index.js';
-import { parseLine, validateLine } from './index.js';
-import { executionErrorMsg } from '../constants/index.js';
-import { cat, add, rn, move, rm } from '../handlers/files/index.js';
-import { handleCompression } from '../handlers/compression/index.js';
+import { handleOs } from '../handlers/os/index.js';
 import { calcHash } from '../handlers/hash/index.js';
+import { handleCompression } from '../handlers/compression/index.js';
+import { cat, add, rn, move, rm } from '../handlers/files/index.js';
+import { parseLine, validateLine } from './index.js';
+import { compressionFlags, executionErrorMsg } from '../constants/index.js';
+
+const { decompress } = compressionFlags;
 
 export const handleLine = async (line) => {
 	try {
@@ -45,6 +48,10 @@ export const handleLine = async (line) => {
 			}
 			case 'rm': {
 				await rm(...args);
+				break;
+			}
+			case 'os': {
+				await handleOs(...args);
 				break;
 			}
 			case 'hash': {
