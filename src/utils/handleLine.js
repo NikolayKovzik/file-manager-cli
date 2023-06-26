@@ -1,7 +1,7 @@
-import { up, cd, ls } from '../handlers/nwd/index.js';
-import { getCwdMsg } from './getCwdMsg.js';
+import { up, cd, ls } from '../handlers/navigation/index.js';
 import { parseLine, validateLine } from './index.js';
-import { compressionFlags, executionErrorMsg } from '../constants';
+import { executionErrorMsg } from '../constants/index.js';
+import { cat, add, rn, move, rm } from '../handlers/files/index.js';
 
 export const handleLine = async (line) => {
 	try {
@@ -21,6 +21,30 @@ export const handleLine = async (line) => {
 				await ls();
 				break;
 			}
+			case 'cat': {
+				await cat(...args);
+				break;
+			}
+			case 'add': {
+				await add(...args);
+				break;
+			}
+			case 'rn': {
+				await rn(...args);
+				break;
+			}
+			case 'cp': {
+				await move(...args, true);
+				break;
+			}
+			case 'mv': {
+				await move(...args);
+				break;
+			}
+			case 'rm': {
+				await rm(...args);
+				break;
+			}
 		}
 	} catch (error) {
 		if (error instanceof SyntaxError) {
@@ -29,6 +53,6 @@ export const handleLine = async (line) => {
 			process.stdout.write(executionErrorMsg);
 		}
 	} finally {
-		process.stdout.write(getCwdMsg());
+		process.stdout.write(`You are currently in ${process.cwd()}\n`);
 	}
 };
